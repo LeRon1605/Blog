@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 function connect(){
-	mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+	mongoose.connect("mongodb+srv://rubeha:<ronle75>@blog.diozp.mongodb.net/Blog?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true})
 		.then(() => {
 			console.log('Connect to Database successfully!!');
 		})
