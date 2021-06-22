@@ -1,0 +1,74 @@
+<style>
+  input[type="file"] {
+      display: none;
+  }
+  .custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+</style>
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/wallpaper.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread display-3">Đăng bài</h1>
+            <p>
+              “The only true wisdom is in knowing you know nothing.”
+            </p>
+          </div>
+        </div>
+      </div>
+ </section>
+<form class="p-5 bg-light" method="POST" action="/blog/add" enctype="multipart/form-data">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-4 d-flex flex-column justify-content-start align-items-center">
+          <img src="/upload/user/Default.png" alt="" class="img-fluid rounded img-thumbnail" id="image">
+          <label class="custom-file-upload mt-3">
+            <input type="file" id="inputImage" name="image" value="/upload/user/Default.png">
+              Choose File
+          </label>
+          <div id="picture-err" class="form-text d-none" style="text-align: center;color: red">Ảnh không hợp lệ</div>
+        </div>
+        <div class="col-md-8">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Nhập tiêu đề ít nhất 20 kí tự" name="title" value="">
+            <div id="title-err" class="form-text d-none" style="color: red">Tiêu đề không hợp lệ</div>
+          </div>
+          <div class="mb-3">
+            <label for="content" class="form-label">Content</label>
+            <textarea class="form-control" value="" rows="20" cols="500" placeholder="Nhập nội dung ít nhất 100 kí tự" name="content" id="content"></textarea>
+            <div id="content-err" class="form-text d-none" style="color: red">Nội dung không hợp lệ</div>
+          </div>
+          <div class="mb-3">
+            <label for="tag" class="form-label d-flex">
+              <span>Tags:</span>
+              <ul class="tagcloud ml-1 p-0">
+                  <a class="tag-cloud-link tag" onclick="getTag(this)">Javascript</a>
+                  <a class="tag-cloud-link tag" onclick="getTag(this)">Nodejs</a>
+                  <a class="tag-cloud-link tag" onclick="getTag(this)">Python</a>
+                  <a class="tag-cloud-link tag" onclick="getTag(this)">C</a>
+                  <a class="tag-cloud-link tag" onclick="getTag(this)">C++</a>
+                  <a class="tag-cloud-link tag" onclick="getTag(this)">Java</a>
+                  <a class="tag-cloud-link tag" onclick="getTag(this)">Machine Learning</a>
+              </ul>
+            </label>
+            <input type="text" readonly="true" id="fakeTag" value="" class="form-control" placeholder="Chọn ít nhất 1 tag">
+            <input class="form-control d-none" readonly="true" type="text" name="tag" id="tag" placeholder="Chọn ít nhất 1 tag">
+            <div id="emailHelp"  class="form-text d-none" style="color: red">Phải có ít nhất 1 tag</div>
+          </div>
+          
+          <div class="mb-3 d-flex justify-content-end">
+            <button class="btn btn-primary rounded-pill" id="submit-btn" type="submit">Đăng bài</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<script type="text/javascript" src="/js/postingBlog.js"></script>

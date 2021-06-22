@@ -1,0 +1,128 @@
+<section class="hero-wrap hero-wrap-2" style="background-image: url('images/wallpaper.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread display-3">TechBg</h1>
+            <h3>
+              <span style="color: white">Hello</span><a href="/auth/{{userLogin._id}}"> {{userLogin.username}}</a>
+            </h3>
+            <h6 id="quote">
+
+            </h6>
+          </div>
+        </div>
+      </div>
+ </section>
+<section class="ftco-section bg-light">
+			<div class="container">
+				<div class="row">
+          <div class="col-lg-8 ftco-animate">
+            <h2 class="p-2 border border-5 rounded d-flex justify-content-center">
+              <a href="/blog/lasted">Bài viết gần đây</a>
+            </h2>
+            <div class="row mt-4">
+              {{#each blogs}}
+              <div class="col-md-6 ftco-animate" >
+                <div class="blog-entry">
+                  <a href="/blog/{{this._id}}" class="block-20" style="background-image: url('{{this.image}}');">
+                  </a>
+                  <div class="text px-4 pt-3 pb-4">
+                    <div class="meta">
+                      <div><a href="/blog/{{this._id}}">{{this.createdAt}}</a></div>
+                      <div><a href="/auth/{{this.author._id}}">{{this.author.name}}</a></div>
+                      <h3 class="heading"><a href="/blog/{{this._id}}">{{this.title}}</a></h3>
+                    </div>
+                    <p class="clearfix">
+                      <a href="/blog/{{this._id}}" class="float-left read">Read more</a>
+                      <a href="/blog/{{this._id}}" class="float-right meta-chat"><span class="icon-chat"></span>{{this.feedback.length}}</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+            <h2 class="p-2 border border-5 rounded d-flex justify-content-center">
+              <a href="/blog/popular">Bài viết nổi bật</a>
+            </h2>
+            <div class="row mt-4">
+              {{#each popularBlogs}}
+              <div class="col-md-6 ftco-animate" >
+                <div class="blog-entry">
+                  <a href="/blog/{{this._id}}" class="block-20" style="background-image: url('{{this.image}}');">
+                  </a>
+                  <div class="text px-4 pt-3 pb-4">
+                    <div class="meta">
+                      <div><a href="/blog/{{this._id}}">{{this.createdAt}}</a></div>
+                      <div><a href="/auth/{{this.author._id}}">{{this.author.name}}</a></div>
+                      <h3 class="heading"><a href="/blog/{{this._id}}">{{this.title}}</a></h3>
+                    </div>
+                    <p class="clearfix">
+                      <a href="/blog/{{this._id}}" class="float-left read">Read more</a>
+                      <a href="/blog/{{this._id}}" class="float-right meta-chat"><span class="icon-chat"></span>{{this.feedback.length}}</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+            <h2 class="p-2 border border-5 rounded d-flex justify-content-center">
+              <a href="/blog/following">Đang theo dõi</a>
+            </h2>
+            <div class="row mt-4">
+              {{#each followingBlogs}}
+              <div class="col-md-6 ftco-animate" >
+                <div class="blog-entry">
+                  <a href="/blog/{{this._id}}" class="block-20" style="background-image: url('{{this.image}}');">
+                  </a>
+                  <div class="text px-4 pt-3 pb-4">
+                    <div class="meta">
+                      <div><a href="/blog/{{this._id}}">{{this.createdAt}}</a></div>
+                      <div><a href="/auth/{{this.author._id}}">{{this.author.name}}</a></div>
+                      <h3 class="heading"><a href="/blog/{{this._id}}">{{this.title}}</a></h3>
+                    </div>
+                    <p class="clearfix">
+                      <a href="/blog/{{this._id}}" class="float-left read">Read more</a>
+                      <a href="/blog/{{this._id}}" class="float-right meta-chat"><span class="icon-chat"></span>{{this.feedback.length}}</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          <div class="col-lg-4 sidebar ftco-animate">
+            <div class="sidebar-box ftco-animate d-flex flex-column align-items-center p-3 border border-3 rounded">
+              <div class="col-12">
+                 <a href="/auth/{{userLogin._id}}" class="block-20 img-fluid" style="background-image: url('{{userLogin.avartar}}')">
+                 </a>
+                 <img src="{{userLogin.avartar}}" alt="" class="d-none" id="avartar">
+              </div>
+              <a href="/auth/{{userLogin._id}}" class="" style="font-size: 2rem" id="username">{{userLogin.username}}</a>
+              <h6>
+                "{{userLogin.sologan}}"
+              </h6>
+            </div>
+            <hr>
+            <div class="sidebar-box ftco-animate">
+              <h2 class="mb-3">Đang hoạt động</h2>
+              <ul class="comment-list" id="online-list">
+              </ul>
+            </div>            
+          </div>
+
+        </div>
+			</div>
+</section>
+<script type="text/javascript">
+  let quotes = [
+    'The only true wisdom is in knowing you know nothing.',
+    'Any fool can know. The point is to understand.',
+    'Write what you know. That should leave you with a lot of free time.',
+    'All knowledge hurts.',
+  ];
+  document.querySelector('#quote').innerText = `"${quotes[Math.floor(Math.random() * 10) % 4]}"`;
+</script>
+<script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous">
+    </script>
+<script type="text/javascript" src="/js/client.js"></script>

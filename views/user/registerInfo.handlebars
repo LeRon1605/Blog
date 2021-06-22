@@ -1,0 +1,43 @@
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/wallpaper.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread display-3">TechBg</h1>
+          </div>
+        </div>
+      </div>
+ </section>
+<div class="container p-5">
+	<form method="POST" action="/auth/{{id}}?_method=PUT" enctype="multipart/form-data">
+		<div class="row d-flex justify-content-center">
+			<h3 class="m-auto">
+				Bạn phải hoàn thành thông tin để truy cập web.
+			</h3>
+		</div>	
+		<div class="row mt-5">
+			<div class="col-4">
+				<img src="https://i.stack.imgur.com/l60Hf.png" alt="" class="rounded img-fluid border border-secondary">
+				<div class="d-flex flex-column align-items-center">
+					<h4 for="avatar" class="form-label mt-2">Ảnh đại diện</h4>
+					<input type="file" class="" name="avatar" id="avatar" value="/upload/Default.png">
+				</div>
+
+			</div>
+			<div class="col-6 ml-5">
+				<div class="mb-3">
+				    <label for="name" class="form-label">Tên người dùng</label>
+				    <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Nhập tên người dùng..." name="username">
+			  	</div>
+			  	<div class="mb-3">
+				    <label for="sologan" class="form-label">Khẩu hiệu</label>
+				    <input type="text" class="form-control" id="sologan" aria-describedby="emailHelp" placeholder="Nhập Khẩu hiệu..." name="sologan">
+			  	</div>
+			  	<button type="submit" class="btn btn-primary">
+					Hoàn thành
+				</button>
+			</div>
+		</div>
+
+	</form>
+</div>

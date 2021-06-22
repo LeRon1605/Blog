@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center align-items-center" style="width: 100%;height: 100vh;">
+    <div class="container row d-flex align-items-center border border-2 rounded p-5">
+        <div class="col-md-8 d-flex justify-content-center">
+            <img alt="" class="img-fluid" src="https://borlabs.io/wp-content/uploads/2019/09/blog-wp-login.png">
+            </img>
+        </div>
+        <div class="col-md-4 f-flex justify-content-center">
+            <form class="mt-5" method="POST" action="">
+                <div class="mb-3">
+                    <label class="form-label" for="name">
+                        User name
+                    </label>
+                    <input aria-describedby="emailHelp" class="form-control" id="name" name="name" type="text" value="">
+                        <div class="form-text d-none" id="emailHelp" style="color: red">
+                            Invalid Username
+                        </div>
+                    </input>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="password">
+                        Password
+                    </label>
+                    <input class="form-control" id="password" name="password" type="password" value="">
+                    	<div class="form-text d-none" id="passwordHelp" style="color: red">
+                            Invalid Password
+                        </div>
+                    </input>
+                </div>
+                <div class="mb-3 d-flex flex-column">
+                    <button class="btn btn-primary" type="submit" id="submit">
+                        Đăng kí
+                    </button>
+                    <p class="mt-2 d-flex justify-content-center">
+                        <a href="/auth/login">Đăng nhập</a>
+                        <span>, nếu bạn đã có tài khoản</span>
+                    </p>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	function validName(name){
+		if (name.trim() == '' || name.trim().length < 6 || name.trim().includes(' ' )) return false;
+		return true;
+	}
+	function validPassword(password){
+		if (password.length < 5 || password.includes(' ')) return false;
+		return true;
+	}
+	document.querySelector('#submit').onclick = function(e){
+		let userName = document.querySelector('#name').value;
+		let password = document.querySelector('#password').value;
+		let isCorrect = true;
+		if (!validName(userName)){
+			isCorrect = false;
+			document.querySelector('#emailHelp').classList.remove('d-none');
+			document.querySelector('#emailHelp').classList.add('d-block');
+		}else{
+            isCorrect = true;
+            document.querySelector('#emailHelp').classList.remove('d-block');
+            document.querySelector('#emailHelp').classList.add('d-none');
+        }
+		if (!validName(userName)){
+			isCorrect = false;
+			document.querySelector('#passwordHelp').classList.remove('d-none');
+			document.querySelector('#passwordHelp').classList.add('d-block');
+		}else{
+            isCorrect = true;
+            document.querySelector('#passwordHelp').classList.remove('d-none');
+            document.querySelector('#passwordHelp').classList.add('d-block');
+        }
+		if (!isCorrect) e.preventDefault();
+	}
+</script>

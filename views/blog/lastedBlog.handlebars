@@ -1,0 +1,43 @@
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/wallpaper.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread display-3">{{title}}</h1>
+            <h6>
+              "The only true wisdom is in knowing you know nothing."
+            </h6> 
+            <ul class="tagcloud m-0 p-0">
+                <a href="/blog/lasted" class="tag-cloud-link" style="color: white">Lasted</a>
+                <a href="/blog/popular" class="tag-cloud-link" style="color: white">Popular</a>
+                <a href="/blog/following" class="tag-cloud-link" style="color: white">Following</a>
+            </ul>
+          </div>
+        </div>
+      </div>
+ </section>
+<section class="ftco-section bg-light">
+  <div class="container">
+    <div class="row">
+      {{#each blogs}}
+        <div class="col-md-4 ftco-animate">
+          <div class="blog-entry">
+            <a href="/blog/{{this._id}}" class="block-20" style="background-image: url('/{{this.image}}');">
+            </a>
+            <div class="text px-4 pt-3 pb-4">
+                <div class="meta">
+                  <div><a href="/blog/{{this._id}}">{{this.createdAt}}</a></div>
+                  <div><a href="/auth/{{this.author._id}}">{{this.author.name}}</a></div>
+                </div>
+                <h3 class="heading"><a href="/blog/{{this._id}}">{{this.title}}</a></h3>
+                  <p class="clearfix">
+                  <a href="/blog/{{this._id}}" class="float-left read">Read more</a>
+                  <a href="/blog/{{this._id}}" class="float-right meta-chat"><span class="icon-chat"></span>{{this.feedback.length}}</a>
+                  </p>
+            </div>
+          </div>
+        </div> 
+      {{/each}}
+    </div>
+  </div>
+</section>
