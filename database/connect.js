@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const url ="mongodb+srv://rubeha:ronle75@blog.diozp.mongodb.net/Blog"
+const url = "mongodb+srv://rubeha:ronle75@blog.diozp.mongodb.net/Blog";
 function connect(){
   try{
     mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -17,3 +17,4 @@ function connect(){
 module.exports = {
 	connect
 }
+//"mongodb://localhost:27017/blog";

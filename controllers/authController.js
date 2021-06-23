@@ -1,6 +1,10 @@
 const user = require('../database/models/user');
 const article = require('../database/models/article');
 const mongoose = require('mongoose');
+const cloudinary = require('../cloudinary');
+
+const multer  = require('multer');
+const upload = multer({ dest: 'public/upload/user' });
 class AuthController{
 	// [GET] auth
 	indexAuth(req, res){
@@ -132,10 +136,11 @@ class AuthController{
 		res.render('user/registerInfo', {id});
 	}
 	// [PUT] auth/:id
-	completeProfile(req, res){
+	async completeProfile(req, res){
 		let sologan = req.body.sologan;
 		let username = req.body.username;
-		let avartar = req.file.path.split('\\').slice(1).join('/');
+		const result = await cloudinary.uploader.upload(req.file.path);
+		let avartar = result.secure_url;
 		let isComplete = true;
 		user.findOne({_id: req.params.id})
 			.then(userLogin => {

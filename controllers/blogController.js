@@ -1,5 +1,10 @@
 const article = require('../database/models/article');
 const users = require('../database/models/user');
+
+const cloudinary = require('../cloudinary');
+
+const multer  = require('multer');
+const upload = multer({ dest: 'public/upload/user' });
 function titleFormat(Obj){
 	Obj.forEach(function(element){
 		element.title = (element.title.length > 60) ? element.title.slice(0, 60) + '...' : element.title;
@@ -117,8 +122,9 @@ class BlogController{
 		res.render('blog/add')
 	}
 	// [POST] /blog/add
-	add(req, res){
-		let image = req.file.path.split('\\').slice(1).join('/');
+	async add(req, res){
+		const result = await cloudinary.uploader.upload(req.file.path);
+		let image = result.secure_url;
 		let tag = req.body.tag.split(',').map(function(element){
 			return element.trim();
 		});
