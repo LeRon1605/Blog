@@ -52,7 +52,7 @@
             {{#each userArticle}}
             <div class="col-md-6 ftco-animate" >
               <div class="blog-entry">
-                <a href="/blog/{{this._id}}" class="block-20" style="background-image: url('/{{this.image}}');">
+                <a href="/blog/{{this._id}}" class="block-20" style="background-image: url('{{this.image}}');">
                 </a>
                 <div class="text px-4 pt-3 pb-4">
                   <div class="meta">
@@ -73,7 +73,7 @@
           <div class="col-lg-4 sidebar ftco-animate">
             <div class="sidebar-box ftco-animate d-flex flex-column align-items-center p-3 border border-3 rounded">
               <div class="col-12">
-                 <a href="/auth/{{userAccess._id}}" class="block-20 img-fluid" style="background-image: url('/{{userAccess.avartar}}')">
+                 <a href="/auth/{{userAccess._id}}" class="block-20 img-fluid" style="background-image: url('{{userAccess.avartar}}')">
                   </a>
               </div>
               

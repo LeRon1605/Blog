@@ -38,7 +38,7 @@
                 {{#each blog.feedback}}
                 <li class="comment">
                   <div class="vcard bio">
-                    <img src="/{{this.author.avartar}}" alt="" class="img-fluid rounded-circle" style="border-radius: 0;width: 4rem;height: 4rem">
+                    <img src="{{this.author.avartar}}" alt="" class="img-fluid rounded-circle" style="border-radius: 0;width: 4rem;height: 4rem">
                   </div>
                   <div class="comment-body">
                     <a href="/auth/{{this.author._id}}">{{this.author.name}}</a>
@@ -70,7 +70,7 @@
                   <h2 class="mb-3">Popular Articles</h2>
                   {{#each popularBlog}}
                   <div class="block-21 mb-4 d-flex">
-                    <a class="blog-img mr-4" style="background-image: url(/{{this.image}});"></a>
+                    <a class="blog-img mr-4" style="background-image: url({{this.image}});"></a>
                     <div class="text">
                       <h3 class="heading"><a href="/blog/{{this._id}}">{{this.title}}</a></h3>
                       <div class="meta">

@@ -29,7 +29,7 @@
                   {{#each this}}
                    <div class="col-md-6 ftco-animate">
                     <div class="blog-entry">
-                      <a href="/blog/{{this._id}}" class="block-20" style="background-image: url('/{{this.image}}');">
+                      <a href="/blog/{{this._id}}" class="block-20" style="background-image: url('{{this.image}}');">
                       </a>
                       <div class="text px-4 pt-3 pb-4">
                         <div class="meta">
@@ -57,7 +57,7 @@
                   <h2 class="mb-3">Popular Articles</h2>
                   {{#each popularBlog}}
                   <div class="block-21 mb-4 d-flex">
-                    <a class="blog-img mr-4" style="background-image: url(/{{this.image}});"></a>
+                    <a class="blog-img mr-4" style="background-image: url({{this.image}});"></a>
                     <div class="text">
                       <h3 class="heading"><a href="/blog/{{this._id}}">{{this.title}}</a></h3>
                       <div class="meta">
