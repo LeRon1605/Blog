@@ -23,7 +23,8 @@ class BlogController{
 				}).slice(0,3);
 				users.findOne({_id: blog.author._id})
 					.then(author => {
-						res.render('blog/blog', {blog,author,popularBlog});
+						let isUser = (author._id == req.cookies._id) ? 'd-block' : 'd-none';
+						res.render('blog/blog', {blog, author, isUser, popularBlog});
 					})
 					.catch(err => {
 						console.log(err);
@@ -33,6 +34,30 @@ class BlogController{
 			.catch(err => {
 				console.log(err);
 			})
+	}
+	// [GET] /blog/:id/edit
+	async editBlogAccess(req, res){
+		let blog = await article.findOne({_id: req.params.id});
+		res.render('blog/edit', {blog});
+	}
+	// [PUT] /blog/:id/edit
+	async editBlog(req, res){
+		// upload image
+		let blog = await article.findOne({_id: req.params.id});
+		if (req.file) var result = await cloudinary.uploader.upload(req.file.path);
+		var image = (result) ? result.secure_url : blog.image;
+		req.body.tag = req.body.tag.split(',');
+		blog = Object.assign(blog, req.body, {image})
+		await blog.save();
+		res.redirect(`/blog/${blog._id}`);
+	}
+	// [DELETE] /blog/:id/delete
+	async deleteBlog(req, res){
+		let user = await users.findOne({_id: req.cookies._id});
+		user.article.splice(user.article.indexOf(req.params.id), 1);
+		await user.save();
+		await article.deleteOne({_id: req.params.id});
+		res.redirect(`/auth/${user._id}`);
 	}
 	// [GET] /blog/lasted
 	lastedBlog(req, res){

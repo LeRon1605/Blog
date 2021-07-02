@@ -13,11 +13,14 @@ const bodyParser = require('body-parser');
 // Connect to DataBase
 const db = require('./database/connect');
 db.connect();
+
 app.use(methodOverride('_method'));
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }))
+
 // Set static files
 app.use(express.static(__dirname + '/public'));
+
 // Set template view engine
 app.engine('handlebars', exphbs({
     defaultLayout: "main",
@@ -31,6 +34,7 @@ Handlebars.registerHelper("sum", function(a, b) {
 });
 app.set('view engine', 'handlebars');
 app.set('views', './views');
+
 // Import routes
 const routes = require('./routes/index');
 routes(app);
@@ -74,4 +78,4 @@ io.on('connection', (socket) => {
   })
 })
 
-server.listen(process.env.PORT || 3000)
+server.listen(process.env.PORT || 8080)

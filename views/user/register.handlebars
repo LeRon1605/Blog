@@ -6,23 +6,27 @@
         </div>
         <div class="col-md-4 f-flex justify-content-center">
             <form class="mt-5" method="POST" action="">
+                
                 <div class="mb-3">
                     <label class="form-label" for="name">
-                        User name
+                        Tên đăng nhập
                     </label>
                     <input aria-describedby="emailHelp" class="form-control" id="name" name="name" type="text" value="">
                         <div class="form-text d-none" id="emailHelp" style="color: red">
-                            Invalid Username
+                            Tên đăng nhập không hợp lệ
+                        </div>
+                        <div class="form-text" id="emailHelp" style="color: red">
+                            {{err}}
                         </div>
                     </input>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="password">
-                        Password
+                        Mật khẩu
                     </label>
                     <input class="form-control" id="password" name="password" type="password" value="">
                     	<div class="form-text d-none" id="passwordHelp" style="color: red">
-                            Invalid Password
+                            Mật khẩu không hợp lệ
                         </div>
                     </input>
                 </div>
@@ -42,7 +46,7 @@
 </div>
 <script type="text/javascript">
 	function validName(name){
-		if (name.trim() == '' || name.trim().length < 6 || name.trim().includes(' ' )) return false;
+		if (name.trim().length < 6 || name.trim().includes(' ')) return false;
 		return true;
 	}
 	function validPassword(password){
@@ -62,14 +66,14 @@
             document.querySelector('#emailHelp').classList.remove('d-block');
             document.querySelector('#emailHelp').classList.add('d-none');
         }
-		if (!validName(userName)){
+		if (!validPassword(password)){
 			isCorrect = false;
 			document.querySelector('#passwordHelp').classList.remove('d-none');
 			document.querySelector('#passwordHelp').classList.add('d-block');
 		}else{
             isCorrect = true;
-            document.querySelector('#passwordHelp').classList.remove('d-none');
-            document.querySelector('#passwordHelp').classList.add('d-block');
+            document.querySelector('#passwordHelp').classList.remove('d-block');
+            document.querySelector('#passwordHelp').classList.add('d-none');
         }
 		if (!isCorrect) e.preventDefault();
 	}

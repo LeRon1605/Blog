@@ -1,4 +1,5 @@
 const user = require('./database/models/user');
+const article = require('./database/models/article');
 class middleware{
 	// If not login yet, redirect to login page
 	isLogin(req, res, next){
@@ -33,6 +34,12 @@ class middleware{
 				else res.redirect('/')
 			})
 			.catch(err => console.log(err));
+	}
+	// Edit [GET] /blog/:id/edit
+	async editAuth(req, res, next){
+		let blog = await article.findOne({_id: req.params.id});
+		if (blog.author._id == req.cookies._id) next();
+		else res.redirect(`/blog/${req.params.id}`);
 	}
 }
 

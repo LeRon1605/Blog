@@ -8,20 +8,6 @@
     padding: 6px 12px;
     cursor: pointer;
   }
-  .sample-toolbar{
-		border:solid 1px #ddd;
-		background:#f4f4f4;
-		padding: 5px;
-		border-radius:3px;
-  }
-  .sample-toolbar a > span{
-		cursor:pointer;
-	}
-  #writer{
-    background-color: white;
-    min-height: 50vh;
-    padding: 1rem
-  }
 </style>
 <section class="hero-wrap hero-wrap-2" style="background-image: url('/images/wallpaper.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -36,14 +22,14 @@
         </div>
       </div>
  </section>
-<form class="p-5 bg-light" method="POST" action="/blog/add" enctype="multipart/form-data">
+<form class="p-5 bg-light" method="POST" action="/blog/{{blog._id}}/edit?_method=PUT" enctype="multipart/form-data">
   <div class="row d-flex justify-content-center">
     <div class="col-md-8">
       <div class="row">
         <div class="col-md-4 d-flex flex-column justify-content-start align-items-center">
-          <img src="/upload/user/Default.png" alt="" class="img-fluid rounded img-thumbnail" id="image">
+          <img src="{{blog.image}}" alt="" class="img-fluid rounded img-thumbnail" id="image">
           <label class="custom-file-upload mt-3">
-            <input type="file" id="inputImage" name="image" value="/upload/user/Default.png">
+            <input type="file" id="inputImage" name="image" value="{{blog.image}}">
               Choose File
           </label>
           <div id="picture-err" class="form-text d-none" style="text-align: center;color: red">Ảnh không hợp lệ</div>
@@ -51,28 +37,14 @@
         <div class="col-md-8">
           <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title" placeholder="Nhập tiêu đề ít nhất 20 kí tự" name="title" value="">
+            <input type="text" class="form-control" id="title" placeholder="Nhập tiêu đề ít nhất 20 kí tự" name="title" value={{blog.title}}>
             <div id="title-err" class="form-text d-none" style="color: red">Tiêu đề không hợp lệ</div>
           </div>
           <div class="mb-3">
             <label for="content" class="form-label">Content</label>
-            <div class="sample-toolbar">
-              <a id="content-p"><span title="Đoạn văn" class="fas fa-paragraph"></span></a>
-              <a id="content-image" ><span title="Hình ảnh" class="fas fa-images"></span></a>
-              <span class="d-flex">
-                <input type="text" id="url" class="form-control me-2 d-none" type="search" placeholder="URL" aria-label="Search">
-                <input type="text" id="paragraph" class="form-control me-2 d-none" type="search" placeholder="Thêm đoạn văn" aria-label="Search">
-                <button class="btn btn-outline-success d-none" type="button" id="add-image">Thêm</button>
-                <button class="btn btn-outline-success d-none" type="button" id="add-paragraph">Thêm</button>
-              </span>
-            </div>
-            <label for="content" class="form-label mt-1" style="{min-height: 50vh}">Preview Content</label>
-            <textarea class="form-control d-none" value="" rows="20" cols="500" placeholder="Nhập nội dung ít nhất 100 kí tự" name="content" id="content"></textarea>
-            <div id="editor">
-
-            </div>
-            </div>
+            <textarea class="form-control" value="" rows="20" cols="500" placeholder="Nhập nội dung ít nhất 100 kí tự" name="content" id="content">{{blog.content}}</textarea>
             <div id="content-err" class="form-text d-none" style="color: red">Nội dung không hợp lệ</div>
+          </div>
           <div class="mb-3">
             <label for="tag" class="form-label d-flex">
               <span>Tags:</span>
@@ -86,8 +58,8 @@
                   <a class="tag-cloud-link tag" onclick="getTag(this)">Machine Learning</a>
               </ul>
             </label>
-            <input type="text" readonly="true" id="fakeTag" value="" class="form-control" placeholder="Chọn ít nhất 1 tag">
-            <input class="form-control d-none" readonly="true" type="text" name="tag" id="tag" placeholder="Chọn ít nhất 1 tag">
+            <input type="text" readonly="true" id="fakeTag" value={{blog.tag}} class="form-control" placeholder="Chọn ít nhất 1 tag">
+            <input class="form-control d-none" readonly="true" type="text" value={{blog.tag}} name="tag" id="tag" placeholder="Chọn ít nhất 1 tag">
             <div id="emailHelp"  class="form-text d-none" style="color: red">Phải có ít nhất 1 tag</div>
           </div>
           
@@ -99,4 +71,3 @@
     </div>
   </div>
 </form>
-<script type="text/javascript" src="/js/postingBlog.js"></script>

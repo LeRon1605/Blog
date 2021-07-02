@@ -12,11 +12,14 @@
       <div class="container">
         <div class="row d-flex">
           <div class="col-lg-8 ftco-animate">
-            <h2 class="mb-3">{{blog.title}}</h2>
-            <p>{{blog.content}}</p>
-            <p>
-              <img src="/images/image_2.jpg" alt="" class="img-fluid">
-            </p>
+            <h2 class="mb-1 d-flex justify-content-between align-items-center">
+              <span>{{blog.title}}</span>
+               <ul class="tagcloud m-0 p-0 {{isUser}}">
+                 <a href="/blog/{{blog._id}}/edit" class="tag-cloud-link">Chỉnh sửa</a>
+                 <a class="tag-cloud-link" data-bs-toggle="modal" data-bs-target="#exampleModal">Xóa</a>
+               </ul>
+            </h2>
+            <p class="mt-2" id="blog-content">{{blog.content}}</p>
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
                 {{#each blog.tag}}
@@ -86,13 +89,13 @@
             <div class="sidebar-box ftco-animate">
               <h2 class="mb-3">Tag Cloud</h2>
               <ul class="tagcloud m-0 p-0">
-                <a href="#" class="tag-cloud-link">Dish</a>
-                <a href="#" class="tag-cloud-link">Food</a>
-                <a href="#" class="tag-cloud-link">Lunch</a>
-                <a href="#" class="tag-cloud-link">Menu</a>
-                <a href="#" class="tag-cloud-link">Dessert</a>
-                <a href="#" class="tag-cloud-link">Drinks</a>
-                <a href="#" class="tag-cloud-link">Sweets</a>
+                <a href="/blog/category/JAVASCRIPT" class="tag-cloud-link" >Javascript</a>
+                <a href="/blog/category/PYTHON" class="tag-cloud-link" >Python</a>
+                <a href="/blog/category/C" class="tag-cloud-link" >C</a>
+                <a href="/blog/category/C++" class="tag-cloud-link">C++</a>
+                <a href="/blog/category/NODEJS" class="tag-cloud-link" >NodeJs</a>
+                <a href="/blog/category/JAVA" class="tag-cloud-link" >Java</a>
+                <a href="/blog/category/MACHINE LEARNING" class="tag-cloud-link" >MACHINE LEARNING</a>
               </ul>
             </div>
             <hr>
@@ -116,3 +119,34 @@
         </div>
       </div>
     </section>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chú ý</h5>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc là muốn xóa bài viết này?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button id="submit-btn" type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
+        <form action="/blog/{{blog._id}}/delete?_method=DELETE" method="POST" id="form">
+          
+        </form>    
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  let form = document.getElementById('form');
+  let btnSubmit = document.getElementById('submit-btn');
+  btnSubmit.onclick = (e) => {
+    form.submit();
+  }
+  window.addEventListener('load', (e) => {
+    let content = document.querySelector('#blog-content');
+    content.innerHTML = content.textContent;
+  })
+</script>

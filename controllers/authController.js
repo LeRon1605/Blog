@@ -117,18 +117,23 @@ class AuthController{
 		res.render('user/register');
 	}
 	// [POST] auth/register
-	register(req, res){
+	async register(req, res){
 		req.body.isComplete = false;
 		req.body.sologan = '';
 		req.body.avartar = 'public/Default.png';
 		req.body.username = '';
-		user.create(req.body)
+		let isExistUser = await user.findOne({name: req.body.name});
+		if (isExistUser){
+			res.render('user/register', {err: 'Tên đăng nhập đã tồn tại'})
+		}else{
+			user.create(req.body)
 			.then(() => {
 				res.redirect('/auth/login');
 			})
 			.catch(err => {
 				console.log(err);
 			})
+		}
 	}
 	// [GET] auth/:_id/inf
 	getInf(req, res){
